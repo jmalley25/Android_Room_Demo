@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     FloatingActionButton fab;
-    List<String> users;
+    List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +37,12 @@ public class MainActivity extends AppCompatActivity {
         users = new ArrayList<>();
 
         for (int i = 0; i < 50; i++) {
-            users.add("Jesse # " + i);
+            User user = new User( "Jesse " + i, "Malley", "jessemalley25@gmail.com" );
+            users.add( user );
         }
 
         recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
-        adapter = new UserAdapter( ( ArrayList<String> ) users );
+        adapter = new UserAdapter( ( ArrayList<User> ) users );
         recyclerView.setAdapter( adapter );
 
 
