@@ -1,25 +1,36 @@
 package com.example.jlmalley.roomdemo;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by jlmalley on 12/20/2017.
- */
 
+@Entity
 public class User {
 
+    /**
+     * Constructor
+     * @param firstName
+     * @param lastName
+     * @param email
+     */
     public User(String firstName, String lastName, String email) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
+    @PrimaryKey(autoGenerate = true)
     private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
 
+    @ColumnInfo(name = "first_name")
+    private String firstName;
+
+    @ColumnInfo(name = "last_name")
+    private String lastName;
+
+    @ColumnInfo(name = "email")
+    private String email;
 
 
     public int getId() {
@@ -53,6 +64,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 }

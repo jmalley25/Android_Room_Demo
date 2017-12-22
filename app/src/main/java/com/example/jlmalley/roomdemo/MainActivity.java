@@ -1,5 +1,6 @@
 package com.example.jlmalley.roomdemo;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     FloatingActionButton fab;
-    List<User> users;
+//    ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById( R.id.recycler_view );
 
-        users = new ArrayList<>();
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                .allowMainThreadQueries()   //Allow the database to read/write on main UI thread.  TODO: This should be done differently(Background Thread). Wrap all in background thread.
+                .build();
 
-        for (int i = 0; i < 50; i++) {
-            User user = new User( "Jesse " + i, "Malley", "jessemalley25@gmail.com" );
-            users.add( user );
-        }
+        List<User> users = db.userDao().getAllUsers();
 
         recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
         adapter = new UserAdapter( ( ArrayList<User> ) users );
