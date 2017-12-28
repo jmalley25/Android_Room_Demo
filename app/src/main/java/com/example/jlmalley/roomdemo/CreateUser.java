@@ -16,29 +16,26 @@ public class CreateUser extends AppCompatActivity {
     EditText firstName;
     EditText lastName;
     EditText email;
-    Button button;
+    Button addUserBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.create_user );
-        final String TAG = "CreateUser - onCreate";
 
         firstName = findViewById( R.id.first_name );
         lastName = findViewById( R.id.last_name );
         email = findViewById( R.id.email );
-        button = findViewById( R.id.button );
+        addUserBtn = findViewById( R.id.addUserButton);
 
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
                 .allowMainThreadQueries()   //Allow the database to read/write on main UI thread.  TODO: This should be done differently(Background Thread). Wrap all in background thread.
                 .build();
 
-        button.setOnClickListener( new View.OnClickListener() {
+        addUserBtn.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:  Save to database
-                Log.d(TAG, "onClick - firstName: " + firstName.getText().toString());
-
+                //Save to database
                 User user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString());
 
                 db.userDao().insertAll(user);

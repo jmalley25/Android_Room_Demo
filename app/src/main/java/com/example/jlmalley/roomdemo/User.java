@@ -7,7 +7,6 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class User {
-
     /**
      * Constructor
      * @param firstName

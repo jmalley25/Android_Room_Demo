@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.facebook.stetho.Stetho;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
+        Stetho.initializeWithDefaults(this);
+
         recyclerView = findViewById( R.id.recycler_view );
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
@@ -41,18 +45,26 @@ public class MainActivity extends AppCompatActivity {
 
         List<User> users = db.userDao().getAllUsers();
 
+        Log.d("USER-SIZE", String.valueOf( users.size() ) );
+
+//        for (int i = 0; i < users.size(); i++) {
+//            Log.d("INDEX", String.valueOf( users.size() ) );
+//            users.clear();
+//        }
+
         recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
         adapter = new UserAdapter( ( ArrayList<User> ) users );
         recyclerView.setAdapter( adapter );
 
 
-        fab = findViewById( R.id.fab );
+        fab = findViewById( R.id.inputButton );
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG )
                 //        .setAction( "Action", null ).show();
                 startActivity(new Intent( MainActivity.this, CreateUser.class ));
+                startActivity(new Intent( MainActivity.this, DeleteUser.class ));
             }
         } );
     }

@@ -27,6 +27,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    // Room
     implementation "android.arch.persistence.room:runtime:1.0.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    // Stetho core
+    compile 'com.facebook.stetho:stetho:1.5.0'
+    // If you want to add a network helper
+    compile 'com.facebook.stetho:stetho-okhttp:1.5.0'
 }

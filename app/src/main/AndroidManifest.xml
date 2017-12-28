@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateUser"/>
+        <activity android:name=".DeleteUser"/>
     </application>
 
 </manifest>
