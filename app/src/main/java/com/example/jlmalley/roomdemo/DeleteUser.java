@@ -48,16 +48,13 @@ public class DeleteUser extends AppCompatActivity {
                 List<User> users = db.userDao().getAllUsers();
                 users.toArray(userArray);
 
-
                 for (int i = 0; i < users.size(); i++) {
-                    if(userArray[i].getId() == 9) {
+                    if(userArray[i].getId() == 8) {
                         db.userDao().deleteUser( userArray[i] );
                     }
                 }
-
                 startActivity( new Intent( DeleteUser.this, MainActivity.class ) );
             }
         });
     }
-
 }

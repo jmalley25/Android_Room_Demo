@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     FloatingActionButton fab;
-//    ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
         adapter = new UserAdapter( ( ArrayList<User> ) users );
         recyclerView.setAdapter( adapter );
-
 
         fab = findViewById( R.id.inputButton );
         fab.setOnClickListener( new View.OnClickListener() {
