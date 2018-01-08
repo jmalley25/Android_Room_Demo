@@ -20,6 +20,7 @@ public class CreateUser extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d( "CreateUser", "OnCreate" );
         super.onCreate(savedInstanceState);
         setContentView( R.layout.create_user );
 

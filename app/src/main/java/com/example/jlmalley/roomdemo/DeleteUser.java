@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,8 +47,12 @@ public class DeleteUser extends AppCompatActivity {
                 List<User> users = db.userDao().getAllUsers();
                 users.toArray(userArray);
 
+                //temporary delete action for testing only
                 for (int i = 0; i < users.size(); i++) {
                     if(userArray[i].getId() == 8) {
+
+                        Log.d( "DeleteUser", "User ID found and should be deleted..." );
+
                         db.userDao().deleteUser( userArray[i] );
                     }
                 }

@@ -1,6 +1,9 @@
 package com.example.jlmalley.roomdemo;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,8 @@ import java.util.ArrayList;
 
 
 class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
+
+    public int mPosition;
 
     ArrayList<User> users;
 
@@ -25,9 +30,16 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
+        mPosition = position;
+
         holder.firstName.setText( users.get( position ).getFirstName() );
         holder.lastName.setText( users.get( position ).getLastName() );
         holder.email.setText( users.get( position ).getEmail() );
+
+        //if position is odd
+        if((position % 2) == 1) {
+            holder.itemView.setBackgroundColor( Color.rgb(225, 225, 255 ) );
+        }
     }
 
     @Override
@@ -35,7 +47,7 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return users.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView firstName;
         public TextView lastName;
@@ -46,6 +58,19 @@ class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             firstName = itemView.findViewById( R.id.first_name );
             lastName = itemView.findViewById( R.id.last_name );
             email = itemView.findViewById( R.id.email );
+
+            itemView.setOnClickListener( this );
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            //startActivity(new Intent( MainActivity.this, DeleteUser.class ));
+
+            //Create option to delete using email as uid(Options: delete, edit, cancel)
+            Log.d("ViewHolder - OnClick", this.firstName.getText().toString());
         }
     }
+
+
 }
